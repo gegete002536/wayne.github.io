@@ -23,9 +23,11 @@ GeneratePost() {
 
 }
 
-for file in $(ls docs/)
+for file in $(ls notepad/)
 do
-	GeneratePost docs/$file "General"
+	GeneratePost notepad/$file "General"
 done
 
 bundle update github-pages
+
+bundle exec jekyll serve

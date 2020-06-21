@@ -1,4 +1,4 @@
----\ncategories: General\n---\n
+---\ncategories: promethues\n---\n
 # 知识点总结
 
 ## 1 http router v.s. net/http中的默认mux
@@ -28,4 +28,14 @@
 - 支持参数重命名
 
 整体感觉，viper方案比flag好用
+
+## 告警系统关键点
+
+### grouping，聚类
+
+对类似告警聚类，比如网络故障时，各种实例发出告警，可以对类似的告警进行合并
+
+### inheriting，告警抑制
+
+
 
