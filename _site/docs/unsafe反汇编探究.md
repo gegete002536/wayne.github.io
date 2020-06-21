@@ -19,7 +19,7 @@
 
 # LEAQ v.s. MOVQ
 
-![LEAQ和MOVQ的区别](./leaq_vs_movq.jpg)
+![LEAQ和MOVQ的区别](./image/leaq_vs_movq.jpg)
 
 leaq 是直接赋值运算，movq是取地址中的值，即
 
