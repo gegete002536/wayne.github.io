@@ -22,7 +22,7 @@ paginate: 2 # <- turn on pagination with two posts per page
 
 # Build settings
 theme: minima
-permalink: /:year/:month/:day/:title:output_ext
+permalink: /blog/:year/:month/:day/:title
 plugins:
     - jekyll-paginate
     - jekyll-category-pages
