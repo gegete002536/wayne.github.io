@@ -1,10 +1,31 @@
-#!/bin/sh
+#!/bin/bash
 
-files=$(ls docs/)
-for file in $files
+workDir=$(pwd)
+
+GeneratePost() {
+	local file=$1
+	local categiory=$2
+	fname="$(basename -- $file)"
+	post=$workDir/_posts/`date -r $file +%Y-%m-%d`-$fname
+
+	[ -f $file ] && \
+		echo "---\ncategories: $categiory\n---\n" > $post && \
+		sed -r -e 's/\((.*)\.jpg\)/\(\/assets\/\1\.jpg\)/g'  $file >> $post
+	[ -d $file ] && [ -z "${file##*image*}" ] && { cp -rf $file ./assets/ ; return; }
+
+	if [ -d $file ]; then
+		files=$(ls $file/)
+		for f in $files
+		do
+			GeneratePost $file/$f $(basename -- $file)
+		done
+	fi
+
+}
+
+for file in $(ls docs/)
 do
-	[ -f docs/$file ] &&  sed -r -e 's/\((.*)\.jpg\)/\(\/assets\/\1\.jpg\)/g'  docs/$file > _posts/`date -r docs/$file +%Y-%m-%d`-$file
-	[ -d docs/$file ] && cp -rf docs/$file ./assets/
+	GeneratePost docs/$file "General"
 done
 
 bundle update github-pages
